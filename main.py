@@ -119,7 +119,7 @@ def fazer_avalanche():
             if keyboard.is_pressed('esc'):
                 root.deiconify()
                 break
-            pg.locateOnScreen("avalanche.png",confidence=0.8)
+            pg.locateOnScreen("Bot_Fazer_Runa/avalanche.png",confidence=0.8)
             pg.press(hot_key)
             pg.sleep(1)
             aumentar_capacidade()
@@ -203,7 +203,7 @@ runas = "Avalanche","Sudden Death" , "Holy", "Arrow"
 def ring():
     if usar_ring.get() == 1:
         try:
-            pg.locateOnScreen("imgs/sem anel.png",confidence=0.8)
+            pg.locateOnScreen("Bot_Fazer_Runa/imgs/sem anel.png",confidence=0.8)
             pg.press(ring_hotkey)
         except pg.ImageNotFoundException:
             pass
@@ -213,7 +213,7 @@ def ring():
 def soft_boots():
     if usar_boots.get() == 1:
         try:
-            pg.locateOnScreen("imgs/botas_gastas.png",confidence=0.8)
+            pg.locateOnScreen("Bot_Fazer_Runa/imgs/botas_gastas.png",confidence=0.8)
             pg.press(boots_hotkey)
         except pg.ImageNotFoundException:
             pass
@@ -221,7 +221,7 @@ def soft_boots():
         pass
 def food():
     try:
-        pg.locateOnScreen("imgs/food02.png",confidence=0.9)
+        pg.locateOnScreen("Bot_Fazer_Runa/imgs/food02.png",confidence=0.9)
         pg.press("f9")
     except pg.ImageNotFoundException:
         pass
@@ -242,9 +242,9 @@ def qual_runa_fazer():
 
 def tibia_logar():
     try:
-        pg.locateOnScreen("tibia_fora.png",confidence=0.8)
+        pg.locateOnScreen("Bot_Fazer_Runa/tibia_fora.png",confidence=0.8)
         print("primeira imagem")
-        ok = pg.locateCenterOnScreen("ok.png",confidence=0.8)
+        ok = pg.locateCenterOnScreen("Bot_Fazer_Runa/ok.png",confidence=0.8)
         print("segunda imagem")
         pg.moveTo(ok, duration=0.5)
         pg.click()
@@ -256,7 +256,7 @@ def tibia_logar():
 def aumentar_capacidade():
     if usar_capacidade.get() == 1:
         try:
-            sd = pg.locateCenterOnScreen("imgs/ava_mochila.png",confidence=0.7,region= region_mochila)
+            sd = pg.locateCenterOnScreen("Bot_Fazer_Runa/imgs/ava_mochila.png",confidence=0.7,region= region_mochila)
             pg.moveTo(sd,duration=0.5)
             try:
                 pg.dragTo(centro_tela, button='left',duration=0.5)
@@ -265,7 +265,7 @@ def aumentar_capacidade():
         except pg.ImageNotFoundException:
                 pass
         try:
-            sd = pg.locateCenterOnScreen("imgs/sd.png",confidence=0.7,region= region_mochila)
+            sd = pg.locateCenterOnScreen("Bot_Fazer_Runa/imgs/sd.png",confidence=0.7,region= region_mochila)
             pg.moveTo(sd,duration=0.5)
             try:
                 pg.dragTo(centro_tela, button='left',duration=0.5)
@@ -275,11 +275,11 @@ def aumentar_capacidade():
                 pass
         
         try:
-            pg.locateCenterOnScreen("blank1.png",confidence=0.8,region= region_mochila)
+            pg.locateCenterOnScreen("Bot_Fazer_Runa/blank1.png",confidence=0.8,region= region_mochila)
             pass
         except pg.ImageNotFoundException:
             try:
-                blank = pg.locateCenterOnScreen("blank.png", region= area_dp, confidence=0.8)
+                blank = pg.locateCenterOnScreen("Bot_Fazer_Runa/blank.png", region= area_dp, confidence=0.8)
                 pg.moveTo(blank,duration=0.5)
                 pg.dragTo(region_mochila, button='left',duration=0.5)
             except pg.ImageNotFoundException:
