@@ -119,7 +119,7 @@ def fazer_avalanche():
             if keyboard.is_pressed('esc'):
                 root.deiconify()
                 break
-            pg.locateOnScreen("avalanche.png",confidence=0.8)
+            pg.locateOnScreen("imgs/avalanche1.png",confidence=0.8)
             pg.press(hot_key)
             pg.sleep(1)
             aumentar_capacidade()
@@ -242,9 +242,9 @@ def qual_runa_fazer():
 
 def tibia_logar():
     try:
-        pg.locateOnScreen("tibia_fora.png",confidence=0.8)
+        pg.locateOnScreen("imgs/tibia_fora.png",confidence=0.8)
         print("primeira imagem")
-        ok = pg.locateCenterOnScreen("ok.png",confidence=0.8)
+        ok = pg.locateCenterOnScreen("imgs/ok.png",confidence=0.8)
         print("segunda imagem")
         pg.moveTo(ok, duration=0.5)
         pg.click()
@@ -275,11 +275,11 @@ def aumentar_capacidade():
                 pass
         
         try:
-            pg.locateCenterOnScreen("blank1.png",confidence=0.8,region= region_mochila)
+            pg.locateCenterOnScreen("imgs/blank1.png",confidence=0.8,region= region_mochila)
             pass
         except pg.ImageNotFoundException:
             try:
-                blank = pg.locateCenterOnScreen("blank.png", region= area_dp, confidence=0.8)
+                blank = pg.locateCenterOnScreen("imgs/blank.png", region= area_dp, confidence=0.8)
                 pg.moveTo(blank,duration=0.5)
                 pg.dragTo(region_mochila, button='left',duration=0.5)
             except pg.ImageNotFoundException:
