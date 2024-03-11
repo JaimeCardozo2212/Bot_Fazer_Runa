@@ -9,6 +9,7 @@ import pygetwindow as gw
 import keyboard
 import win32gui
 
+
 hotkey = "f1","f2","f3","f4","f5","f6","f7","f8","f9","f10","f11","f12"
 
 def get_window_opacity(hwnd):
@@ -65,6 +66,8 @@ def Hotkey_Runa():
     global hot_key
     global boots_hotkey
     global ring_hotkey
+    global food_hotkey
+    food_hotkey = hotkey_food.get()
     boots_hotkey = hotkey_boots.get()
     ring_hotkey = hotkey_ring.get()
     hot_key = hotkey_runa.get()
@@ -111,6 +114,7 @@ def encerrar_change_color_leave(event):
 
 def fazer_avalanche():
     while True:
+        schedule.run_pending()
         try:
             schedule.every().day.at(texto).do(encerrar_programa)
         except:
@@ -220,11 +224,12 @@ def soft_boots():
     else:
         pass
 def food():
-    try:
-        pg.locateOnScreen("imgs/food02.png",confidence=0.9)
-        pg.press("f9")
-    except pg.ImageNotFoundException:
-        pass
+    if usar_food.get() == 1:
+        try:
+            pg.locateOnScreen("imgs/comer.png",confidence=0.9)
+            pg.press(food_hotkey)
+        except pg.ImageNotFoundException:
+            pass
 
 
 
@@ -287,11 +292,12 @@ def aumentar_capacidade():
     else:
         pass
 
+
 root = tk.Tk()
 root.title("Bot Runa")
 
 OPACITY1 = tk.Button(root, text="Aplicar Opacidade",command=hidden_client,fg="white",bd=2,bg="#48c1dc")
-OPACITY1.grid(row=3, column=0,columnspan=5,padx=10,pady=5,sticky="nsew")
+OPACITY1.grid(row=4, column=0,columnspan=5,padx=10,pady=5,sticky="nsew")
 OPACITY1.bind("<Enter>", opacity_change_color_enter)
 OPACITY1.bind("<Leave>",opacity_change_color_leave)
 
@@ -316,16 +322,16 @@ hotkey_boots = ttk.Combobox(values=hotkey,width=5)
 hotkey_boots.grid(row=1, column=4,padx=10,pady=10)
 
 laabel_capacidade = tk.Label(text="Mover Runa")
-laabel_capacidade.grid(row=2,column=2)
+laabel_capacidade.grid(row=3,column=2)
 
 usar_capacidade = tk.IntVar()
 comando_capacidade = tk.Checkbutton(root,variable=usar_capacidade)
-comando_capacidade.grid(row=2, column=3,padx=10,pady=10)
+comando_capacidade.grid(row=3, column=3,padx=10,pady=10)
 
 laabel_horario = tk.Label(text="Escolha Horário para termino do programa")
 laabel_horario.grid(row=0,column=0)
 
-entrada = ttk.Combobox(values=horario,text="00:00",width=10)
+entrada = ttk.Combobox(values=horario,width=10)
 entrada.grid(row=0, column=1,padx=10,pady=10)
 
 laabel_qual_runa = tk.Label(text="Selecione qual Runa fazer")
@@ -340,13 +346,23 @@ laabel_hotkey.grid(row=2,column=0)
 hotkey_runa = ttk.Combobox(values=hotkey,width=10)
 hotkey_runa.grid(row=2, column=1,padx=10,pady=10)
 
+laabel_food = tk.Label(text="Comer")
+laabel_food.grid(row=2,column=2)
+
+usar_food = tk.IntVar()
+comando_food = tk.Checkbutton(root,variable=usar_food)
+comando_food.grid(row=2, column=3)
+
+hotkey_food = ttk.Combobox(values=hotkey,width=5)
+hotkey_food.grid(row=2, column=4)
+
 botao = tk.Button(root,text='Start', command=start,bg="#6eed2e" ,fg="white",bd=2)
-botao.grid(row=4,column=0,columnspan=5, padx=10,pady=5,sticky="nsew")
+botao.grid(row=5,column=0,columnspan=5, padx=10,pady=5,sticky="nsew")
 botao.bind("<Enter>", change_color_enter)
 botao.bind("<Leave>",change_color_leave)
 
 botao_encerrar = tk.Button(root,text='Encerrar', command=encerrar_programa,bg="#ff4d4d",fg="white",bd=2)
-botao_encerrar.grid(row=5,column=0,columnspan=5, padx=10,pady=5,sticky="nsew")
+botao_encerrar.grid(row=6,column=0,columnspan=5, padx=10,pady=5,sticky="nsew")
 botao_encerrar.bind("<Enter>", encerrar_change_color_enter)
 botao_encerrar.bind("<Leave>",encerrar_change_color_leave)
 GWL_EXSTYLE = -20
@@ -366,7 +382,6 @@ region_mochila = (1023, 40, 146, 185)
 area_dp = (531,251,33,27)
 centro_tela = (499,304)
 
-schedule.run_pending()
     
 root.mainloop()
 
